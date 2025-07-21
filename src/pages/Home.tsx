@@ -138,41 +138,86 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-cover bg-center rounded-3xl overflow-hidden" style={{ backgroundImage: "url('https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1920')" }}>
-  <div className="absolute inset-0 bg-black bg-opacity-40" />
-  
-  <div className="relative z-10 max-w-7xl mx-auto px-4 py-24 text-white">
-    {/* Heading */}
-    <h1 className="text-4xl md:text-6xl font-bold leading-tight max-w-3xl">
-      Connecting Clients in <br /> need to freelancers who <span className="text-green-400">deliver</span>
-    </h1>
+      <section
+  className="relative ml-20 mr-20 mt-5 bg-cover bg-center rounded-3xl overflow-hidden text-white"
+  style={{
+    backgroundImage:
+      "url('https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1920')",
+  }}
+>
+  {/* Overlay */}
+  <div className="absolute inset-0 bg-black/60" />
 
-    {/* Search Panel */}
-    <div className="mt-12 bg-gray-900 bg-opacity-90 p-6 rounded-2xl max-w-4xl">
-      {/* Tabs */}
-      <div className="flex justify-between mb-6 space-x-4">
-        <button className="flex-1 py-3 rounded-full border border-gray-600 bg-gray-800 text-white font-semibold hover:bg-gray-700 transition">Find talent</button>
-        <button className="flex-1 py-3 rounded-full border border-gray-600 bg-gray-800 text-white font-semibold hover:bg-gray-700 transition">Browse jobs</button>
+  {/* Background Pattern */}
+  <div className="absolute inset-0 opacity-10">
+    <div
+      className="absolute inset-0"
+      style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+      }}
+    />
+  </div>
+
+  <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+    <div className="grid lg:grid-cols-2 gap-12 items-center">
+      {/* Left Content */}
+      <div>
+        <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium mb-6">
+          <Star className="w-4 h-4 mr-2 text-yellow-400" />
+          Trusted by 10,000+ students worldwide
+        </div>
+
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+          Find Perfect
+          <span className="block bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+            Academic Projects
+          </span>
+        </h1>
+
+        <p className="text-xl md:text-2xl mb-10 text-blue-100 leading-relaxed">
+          Discover high-quality student projects, learn from expert code, and accelerate your academic journey with our curated marketplace.
+        </p>
+
+        {/* Full-width Search Bar */}
+        <form onSubmit={handleSearch} className="mb-10">
+          <div className="relative w-full">
+            <div className="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none">
+              <Search className="h-6 w-6 text-gray-400" />
+            </div>
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="Search for projects, tech stacks, or keywords..."
+              className="block w-full pl-14 pr-40 py-5 text-lg border-0 rounded-2xl bg-white/90 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-4 focus:ring-white/20 shadow-2xl"
+            />
+            <div className="absolute inset-y-0 right-0 flex items-center pr-4">
+              <button
+                type="submit"
+                className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-3 rounded-xl font-semibold hover:from-orange-600 hover:to-red-600 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
+              >
+                Search
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
 
-      {/* Search bar */}
-      <div className="flex items-center bg-white rounded-full p-2 overflow-hidden">
-        <input 
-          type="text" 
-          placeholder="Search by role, skills, or keywords" 
-          className="flex-1 px-6 py-3 text-gray-900 focus:outline-none rounded-l-full"
-        />
-        <button className="px-6 py-3 bg-black text-white font-semibold rounded-full hover:bg-gray-900 transition">
-          <span className="bg-yellow-300 px-4 py-1 rounded-full text-black font-bold">Search</span>
-        </button>
-      </div>
-
-      {/* Trusted logos */}
-      <div className="flex justify-between items-center mt-8 opacity-70">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" className="h-6" />
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Airbnb_Logo_B%C3%A9lo.svg" alt="Airbnb" className="h-6" />
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Bissell_logo.svg" alt="Bissell" className="h-6" />
-        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Glassdoor_logo.svg" alt="Glassdoor" className="h-6" />
+      {/* Right Side Buttons Only */}
+      <div className="flex flex-col sm:flex-row lg:flex-col gap-4">
+        <Link
+          to="/projects"
+          className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-900 rounded-xl font-bold text-lg hover:bg-gray-50 transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:scale-105"
+        >
+          Browse Projects
+          <ArrowRight className="ml-2 w-5 h-5" />
+        </Link>
+        <Link
+          to="/upload"
+          className="inline-flex items-center justify-center px-8 py-4 bg-transparent border-2 border-white text-white rounded-xl font-bold text-lg hover:bg-white hover:text-blue-900 transition-all duration-200"
+        >
+          Sell Your Project
+        </Link>
       </div>
     </div>
   </div>
