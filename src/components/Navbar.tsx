@@ -29,7 +29,7 @@ const Navbar = () => {
               <Grid3X3 className="w-7 h-7 text-white" />
             </div>
             <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-              StudyStack
+              projXchange
             </span>
           </Link>
           {/* Right Side Icons & Profile */}

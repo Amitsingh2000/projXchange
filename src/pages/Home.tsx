@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Code, Database, Globe, Smartphone, Star, ArrowRight, Play, CheckCircle, Users, Award, TrendingUp, Clock, Shield, Zap } from 'lucide-react';
+import { Search, Code, Database, Globe, Smartphone, Star, ArrowRight, Play, CheckCircle, Users, Award, TrendingUp, Clock, Shield, Zap, BookOpen, Brain, DollarSign } from 'lucide-react';
 
 const Home = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -111,29 +111,36 @@ const Home = () => {
     { number: '24/7', label: 'Support', icon: Clock }
   ];
 
+
+
   const features = [
     {
-      icon: Shield,
-      title: 'Secure Payments',
-      description: 'Your money is protected with our secure payment system'
+      icon: BookOpen,
+      title: "Access curated content",
+      subtitle: "across subjects and courses",
     },
     {
-      icon: Zap,
-      title: 'Instant Download',
-      description: 'Get your project files immediately after purchase'
+      icon: Users,
+      title: "Connect with mentors",
+      subtitle: "for guidance and career support",
     },
     {
-      icon: CheckCircle,
-      title: 'Quality Guaranteed',
-      description: 'All projects are reviewed and tested before listing'
-    }
+      icon: Brain,
+      title: "Smart learning tools",
+      subtitle: "including flashcards and quizzes",
+    },
+    {
+      icon: DollarSign,
+      title: "Affordable & student-friendly",
+      subtitle: "only pay if you're satisfied",
+    },
   ];
-
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     // Navigate to projects page with search term
     window.location.href = `/projects?search=${encodeURIComponent(searchTerm)}`;
   };
+
 
   return (
     <div className="min-h-screen">
@@ -223,154 +230,166 @@ const Home = () => {
         </div>
       </section>
 
-
-
-      {/* Stats Section */}
-      <section className="py-16 bg-white">
+      <section className="py-20 mt-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
+          <h2 className="text-4xl sm:text-5xl font-bold text-center text-gray-900 mb-16">
+            Everything students need in one place
+          </h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12">
+            {features.map((feature, index) => (
               <div key={index} className="text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-teal-500 rounded-2xl mb-4">
-                  <stat.icon className="w-8 h-8 text-white" />
+                <div className="mb-4 flex justify-center">
+                  <feature.icon className="w-10 h-10 text-gray-800" />
                 </div>
-                <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">{stat.number}</div>
-                <div className="text-gray-600 font-medium">{stat.label}</div>
+                <div className="text-lg font-semibold text-gray-900">
+                  {feature.title}
+                </div>
+                <div className="text-sm text-gray-600 mt-1">
+                  {feature.subtitle}
+                </div>
               </div>
             ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <button className="bg-black text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition font-medium text-lg shadow-md">
+              Join now
+            </button>
           </div>
         </div>
       </section>
 
       {/* Categories Section */}
       <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Explore by Technology
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Find projects built with your favorite technologies and frameworks
-            </p>
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    {/* Title */}
+    <div className="text-center mb-20">
+      <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        Start Exploring & Building
+      </h2>
+      <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        Discover trending technologies and real-world projects to level up your skills
+      </p>
+    </div>
+
+    {/* Technologies Grid */}
+    <div className="mb-20">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+        {categories.map((category) => (
+          <Link
+            key={category.name}
+            to={`/projects?category=${category.name.toLowerCase()}`}
+            className="group bg-white rounded-2xl p-6 text-center hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-gray-100"
+          >
+            <div className={`w-16 h-16 ${category.color} rounded-xl flex items-center justify-center mx-auto mb-4 transition-transform group-hover:scale-110`}>
+              <category.icon className="w-8 h-8 text-white" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-1">{category.name}</h3>
+            <p className="text-gray-600 text-sm">{category.count} projects</p>
+            <div className="mt-2 inline-flex items-center px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">
+              <TrendingUp className="w-3 h-3 mr-1" />
+              {category.growth}
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
+
+    {/* Featured Projects */}
+    <div className="text-center mb-14">
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        Featured Projects
+      </h2>
+      <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        Hand-picked projects to inspire your next build
+      </p>
+    </div>
+
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {featuredProjects.map((project) => (
+        <Link
+          key={project.id}
+          to={`/project/${project.id}`}
+          className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-gray-100"
+        >
+          <div className="relative">
+            <img
+              src={project.thumbnail}
+              alt={project.title}
+              className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500"
+            />
+            <div className="absolute top-4 left-4">
+              <span className="px-3 py-1 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-full text-sm font-bold shadow">
+                {project.seller.level}
+              </span>
+            </div>
+            <div className="absolute top-4 right-4">
+              <button className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition">
+                <Play className="w-5 h-5 text-gray-700" />
+              </button>
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {categories.map((category) => (
-              <Link
-                key={category.name}
-                to={`/projects?category=${category.name.toLowerCase()}`}
-                className="group relative bg-white rounded-2xl p-8 text-center hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-gray-100"
-              >
-                <div className={`w-20 h-20 ${category.color} rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform shadow-lg`}>
-                  <category.icon className="w-10 h-10 text-white" />
+          <div className="p-6">
+            <div className="flex items-center justify-between mb-3">
+              <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold">
+                {project.category}
+              </span>
+              <div className="flex items-center">
+                <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                <span className="ml-1 text-sm font-semibold text-gray-700">{project.rating}</span>
+                <span className="ml-1 text-sm text-gray-500">({project.reviews})</span>
+              </div>
+            </div>
+
+            <h3 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-indigo-600 transition">
+              {project.title}
+            </h3>
+
+            <div className="flex items-center mb-4">
+              <img
+                src={project.seller.avatar}
+                alt={project.seller.name}
+                className="w-8 h-8 rounded-full object-cover mr-3"
+              />
+              <div>
+                <div className="font-semibold text-gray-900 text-sm">{project.seller.name}</div>
+                <div className="flex items-center text-xs text-gray-600">
+                  <Star className="w-3 h-3 text-yellow-400 fill-current mr-1" />
+                  {project.seller.rating}
                 </div>
-                <h3 className="font-bold text-gray-900 mb-2 text-lg">{category.name}</h3>
-                <p className="text-gray-600 mb-2">{category.count} projects</p>
-                <div className="inline-flex items-center px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">
-                  <TrendingUp className="w-3 h-3 mr-1" />
-                  {category.growth}
-                </div>
-              </Link>
-            ))}
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-2 mb-4">
+              {project.tags.map((tag, index) => (
+                <span key={index} className="px-2 py-1 bg-gray-100 text-gray-700 rounded-lg text-xs font-medium">
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <span className="text-xl font-bold text-gray-900">{project.price}</span>
+                <span className="text-base text-gray-500 line-through">{project.originalPrice}</span>
+              </div>
+              <div className="text-right text-sm">
+                <div className="text-gray-600">{project.sales} sales</div>
+                <div className="text-green-600 font-medium">{project.deliveryTime} delivery</div>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </Link>
+      ))}
+    </div>
+  </div>
+</section>
 
-      {/* Featured Projects */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Featured Projects
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Hand-picked projects from our top-rated sellers
-            </p>
-          </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredProjects.map((project) => (
-              <Link
-                key={project.id}
-                to={`/project/${project.id}`}
-                className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-gray-100"
-              >
-                <div className="relative">
-                  <img
-                    src={project.thumbnail}
-                    alt={project.title}
-                    className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-full text-sm font-bold shadow-lg">
-                      {project.seller.level}
-                    </span>
-                  </div>
-                  <div className="absolute top-4 right-4">
-                    <button className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors">
-                      <Play className="w-5 h-5 text-gray-700" />
-                    </button>
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold">
-                      {project.category}
-                    </span>
-                    <div className="flex items-center">
-                      <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                      <span className="ml-1 text-sm font-semibold text-gray-700">{project.rating}</span>
-                      <span className="ml-1 text-sm text-gray-500">({project.reviews})</span>
-                    </div>
-                  </div>
-
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
-                    {project.title}
-                  </h3>
-
-                  <div className="flex items-center mb-4">
-                    <img
-                      src={project.seller.avatar}
-                      alt={project.seller.name}
-                      className="w-8 h-8 rounded-full object-cover mr-3"
-                    />
-                    <div>
-                      <div className="font-semibold text-gray-900 text-sm">{project.seller.name}</div>
-                      <div className="flex items-center">
-                        <Star className="w-3 h-3 text-yellow-400 fill-current mr-1" />
-                        <span className="text-xs text-gray-600">{project.seller.rating}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tags.map((tag, index) => (
-                      <span key={index} className="px-2 py-1 bg-gray-100 text-gray-700 rounded-lg text-xs font-medium">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2">
-                      <span className="text-2xl font-bold text-gray-900">{project.price}</span>
-                      <span className="text-lg text-gray-500 line-through">{project.originalPrice}</span>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-sm text-gray-600">{project.sales} sales</div>
-                      <div className="text-sm text-green-600 font-medium">{project.deliveryTime} delivery</div>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
+      {/* Features Section
       <section className="py-20 bg-gradient-to-br from-blue-50 to-teal-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -394,7 +413,7 @@ const Home = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Testimonials */}
       <section className="py-20 bg-white">
