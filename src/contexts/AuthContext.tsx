@@ -21,6 +21,7 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+
 // Mock users database
 const mockUsers: User[] = [
   {

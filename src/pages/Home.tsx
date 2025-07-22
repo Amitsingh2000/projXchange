@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Code, Database, Globe, Smartphone, Star, ArrowRight, Play, CheckCircle, Users, Award, TrendingUp, Clock, Shield, Zap, BookOpen, Brain, DollarSign } from 'lucide-react';
+import LoginModal from '../components/LoginForm';
 
 const Home = () => {
   const [searchTerm, setSearchTerm] = useState('');
+   const [showLogin, setShowLogin] = useState(false);
 
   const categories = [
     { name: 'Java', icon: Code, color: 'bg-gradient-to-br from-orange-500 to-red-500', count: 45, growth: '+12%' },
@@ -253,9 +255,10 @@ const Home = () => {
           </div>
 
           <div className="mt-12 text-center">
-            <button className="bg-black text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition font-medium text-lg shadow-md">
+            <button onClick={() => setShowLogin(true)} className="bg-black text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition font-medium text-lg shadow-md">
               Join now
             </button>
+            <LoginModal isOpen={showLogin} onClose={() => setShowLogin(false)} />
           </div>
         </div>
       </section>

@@ -7,30 +7,23 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-  const [formData, setFormData] = useState({
-    email: '',
-    password: ''
-  });
-  
+  const [formData, setFormData] = useState({ email: '', password: '' });
+
   const { login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  
   const from = location.state?.from?.pathname || '/';
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setError('');
-    
+
     try {
       const success = await login(formData.email, formData.password);
       if (success) {
@@ -47,14 +40,17 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-teal-700 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      {/* Background Pattern */}
+      {/* Background pattern */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }} />
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}
+        />
       </div>
 
-      {/* Floating Elements */}
+      {/* Floating decorations */}
       <div className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full opacity-20 animate-pulse"></div>
       <div className="absolute bottom-20 right-20 w-24 h-24 bg-gradient-to-br from-green-400 to-blue-500 rounded-full opacity-20 animate-pulse delay-1000"></div>
 
@@ -65,14 +61,10 @@ const Login = () => {
             <div className="w-16 h-16 bg-white/10 backdrop-blur-lg rounded-2xl flex items-center justify-center border border-white/20">
               <Grid3X3 className="w-9 h-9 text-white" />
             </div>
-            <span className="text-3xl font-bold text-white">StudyStack</span>
+            <span className="text-3xl font-bold text-white">ProjXchange</span>
           </Link>
-          <h2 className="text-4xl font-bold text-white mb-4">
-            Welcome back
-          </h2>
-          <p className="text-xl text-blue-100">
-            Sign in to your account to continue
-          </p>
+          <h2 className="text-4xl font-bold text-white mb-4">Log in to Continue Learning</h2>
+          <p className="text-xl text-blue-100">Access your StudyStack dashboard and continue your journey 🚀</p>
         </div>
 
         {/* Form */}
@@ -96,7 +88,7 @@ const Login = () => {
                   required
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full pl-12 pr-4 py-4 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-transparent bg-white/10 backdrop-blur-sm text-white placeholder-gray-300"
+                  className="w-full pl-12 pr-4 py-4 border border-white/20 rounded-xl bg-white/10 text-white placeholder-gray-300 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-white/30"
                   placeholder="Enter your email"
                 />
               </div>
@@ -115,7 +107,7 @@ const Login = () => {
                   required
                   value={formData.password}
                   onChange={handleInputChange}
-                  className="w-full pl-12 pr-14 py-4 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-transparent bg-white/10 backdrop-blur-sm text-white placeholder-gray-300"
+                  className="w-full pl-12 pr-14 py-4 border border-white/20 rounded-xl bg-white/10 text-white placeholder-gray-300 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-white/30"
                   placeholder="Enter your password"
                 />
                 <button
@@ -159,7 +151,7 @@ const Login = () => {
           </form>
         </div>
 
-        {/* Footer */}
+        {/* Info below form */}
         <div className="text-center">
           <p className="text-lg text-blue-100">
             Don't have an account?{' '}
@@ -169,30 +161,30 @@ const Login = () => {
           </p>
         </div>
 
-        {/* Demo Credentials */}
+        {/* Demo credentials */}
         <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-6 text-center">
           <h3 className="text-lg font-bold text-white mb-4 flex items-center justify-center gap-2">
             <Star className="w-5 h-5 text-yellow-400" />
-            Demo Credentials
+            Try with Demo Accounts
           </h3>
           <div className="space-y-3 text-sm">
             <div className="bg-white/10 rounded-xl p-3">
               <p className="text-blue-100 mb-1">
-                <strong className="text-white">Student Account:</strong>
+                <strong className="text-white">Student:</strong> Access quizzes, leaderboard, profile
               </p>
-              <p className="text-blue-200">john@studystack.com / student123</p>
+              <p className="text-blue-200">john@studystack.com / <span className="text-white font-semibold">student123</span></p>
             </div>
             <div className="bg-white/10 rounded-xl p-3">
               <p className="text-blue-100 mb-1">
-                <strong className="text-white">Admin Account:</strong>
+                <strong className="text-white">Admin:</strong> Add quizzes, manage users
               </p>
-              <p className="text-blue-200">admin@studystack.com / admin123</p>
+              <p className="text-blue-200">admin@studystack.com / <span className="text-white font-semibold">admin123</span></p>
             </div>
           </div>
         </div>
 
-        {/* Trust Indicators */}
-        <div className="flex items-center justify-center gap-8 text-sm text-blue-200">
+        {/* Trust indicators */}
+        <div className="flex items-center justify-center gap-8 text-sm text-blue-200 mt-4">
           <div className="flex items-center gap-2">
             <Shield className="w-4 h-4" />
             <span>Secure Login</span>
@@ -202,6 +194,11 @@ const Login = () => {
             <span>Trusted Platform</span>
           </div>
         </div>
+
+        {/* Footer */}
+        <p className="mt-8 text-center text-blue-200 text-xs">
+          Built for learners by learners ❤️ StudyStack © {new Date().getFullYear()}
+        </p>
       </div>
     </div>
   );

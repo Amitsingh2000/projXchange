@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -18,7 +17,7 @@ function App() {
     <AuthProvider>
       <Router>
         <div className="min-h-screen bg-gray-50">
-          <Navbar />
+          <Navbar/>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<ProjectListing />} />
