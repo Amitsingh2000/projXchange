@@ -8,8 +8,6 @@ import ProjectDetail from './pages/ProjectDetail';
 import StudentDashboard from './pages/StudentDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import UploadProject from './pages/UploadProject';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
 import Footer from './components/Footer';
 
 function App() {
@@ -37,9 +35,7 @@ function App() {
                 <UploadProject />
               </ProtectedRoute>
             } />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-          </Routes>
+         </Routes>
           <Footer/>
         </div>
       </Router>

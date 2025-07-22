@@ -22,6 +22,7 @@ const navigate = useNavigate(); // ⬅️ Hook
   const handleLogout = () => {
     logout();
     setIsProfileOpen(false);
+    navigate('/', { replace: true });
   };
 
   return (
