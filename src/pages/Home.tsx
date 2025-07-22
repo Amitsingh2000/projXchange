@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Code, Database, Globe, Smartphone, Star, ArrowRight, Play, CheckCircle, Users, Award, TrendingUp, Clock, Shield, Zap, BookOpen, Brain, DollarSign } from 'lucide-react';
 import LoginModal from '../components/LoginForm';
+import LoginForm from '../components/LoginForm';
 
 const Home = () => {
   const [searchTerm, setSearchTerm] = useState('');
-   const [showLogin, setShowLogin] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
 
   const categories = [
     { name: 'Java', icon: Code, color: 'bg-gradient-to-br from-orange-500 to-red-500', count: 45, growth: '+12%' },
@@ -157,7 +158,7 @@ const Home = () => {
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/70" />
 
-        {/* Pattern */}
+        {/* Dot Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div
             className="absolute inset-0"
@@ -169,27 +170,32 @@ const Home = () => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
             {/* Left Content */}
             <div>
+              <p className="text-sm uppercase tracking-widest text-white/70 mb-3 font-medium">
+                Empowering student innovation
+              </p>
+
               <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium mb-6">
                 <Star className="w-4 h-4 mr-2 text-yellow-400" />
                 Trusted by 10,000+ students worldwide
               </div>
 
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-                Find Perfect
-                <span className="block bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
-                  Academic Projects
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight tracking-tight">
+                Explore & Contribute to
+                <span className="block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
+                  Real Academic Projects
                 </span>
               </h1>
 
-              <p className="text-lg sm:text-xl md:text-2xl mb-10 text-blue-100 leading-relaxed">
+              <p className="text-lg sm:text-xl md:text-2xl mb-10 text-blue-100 leading-relaxed max-w-2xl">
                 Discover high-quality student projects, learn from expert code, and accelerate your academic journey with our curated marketplace.
               </p>
 
               {/* Search Bar */}
               <form onSubmit={handleSearch} className="mb-10">
-                <div className="relative w-full">
+                <div className="relative w-full max-w-2xl">
                   <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
                     <Search className="h-5 w-5 text-gray-400" />
                   </div>
@@ -203,8 +209,9 @@ const Home = () => {
                   <div className="absolute inset-y-0 right-0 flex items-center pr-3">
                     <button
                       type="submit"
-                      className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 sm:px-8 py-3 rounded-xl font-semibold hover:from-orange-600 hover:to-red-600 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
+                      className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 sm:px-8 py-3 rounded-xl font-semibold hover:from-orange-600 hover:to-red-600 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
                     >
+                      <Search className="w-4 h-4" />
                       Search
                     </button>
                   </div>
@@ -212,20 +219,19 @@ const Home = () => {
               </form>
             </div>
 
-            {/* Right Side Buttons */}
+            {/* Right CTA Buttons */}
             <div className="flex flex-col sm:flex-row lg:flex-col gap-4">
               <Link
                 to="/projects"
-                className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-900 rounded-xl font-bold text-lg hover:bg-gray-50 transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:scale-105"
+                className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-900 rounded-xl font-semibold text-lg hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-2xl transform hover:scale-105"
               >
-                Browse Projects
-                <ArrowRight className="ml-2 w-5 h-5" />
+                Browse Projects <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
               <Link
                 to="/upload"
-                className="inline-flex items-center justify-center px-8 py-4 bg-transparent border-2 border-white text-white rounded-xl font-bold text-lg hover:bg-white hover:text-blue-900 transition-all duration-200"
+                className="inline-flex items-center justify-center px-8 py-4 border border-white text-white rounded-xl font-semibold text-lg hover:bg-white hover:text-blue-900 transition-all duration-200 hover:shadow-xl hover:scale-105"
               >
-                Sell Your Project
+                Upload Yours 🚀
               </Link>
             </div>
           </div>
@@ -238,7 +244,7 @@ const Home = () => {
             Everything students need in one place
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 mt-20">
             {features.map((feature, index) => (
               <div key={index} className="text-center">
                 <div className="mb-4 flex justify-center">
@@ -254,211 +260,219 @@ const Home = () => {
             ))}
           </div>
 
-          <div className="mt-12 text-center">
-            <button onClick={() => setShowLogin(true)} className="bg-black text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition font-medium text-lg shadow-md">
-              Join now
+          <div className="mt-20 text-center">
+            <button
+              onClick={() => setShowLogin(true)}
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-teal-500 hover:from-blue-700 hover:to-teal-600 text-white px-8 py-3 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition duration-300"
+            >
+              🚀 Join Projxchange Now
             </button>
-            <LoginModal isOpen={showLogin} onClose={() => setShowLogin(false)} />
           </div>
         </div>
       </section>
+      <LoginForm
+        isOpen={showLogin}
+        onClose={() => setShowLogin(false)}
+        onSwitchToSignup={() => {
+          setShowLogin(false);
+          // Optional: open signup modal if you have it
+        }}
+        onSuccess={() => setShowLogin(false)}
+      />
 
       {/* Categories Section */}
       <section className="py-20 bg-gray-50">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    {/* Title */}
-    <div className="text-center mb-20">
-      <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-        Start Exploring & Building
-      </h2>
-      <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-        Discover trending technologies and real-world projects to level up your skills
-      </p>
-    </div>
-
-    {/* Technologies Grid */}
-    <div className="mb-20">
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-        {categories.map((category) => (
-          <Link
-            key={category.name}
-            to={`/projects?category=${category.name.toLowerCase()}`}
-            className="group bg-white rounded-2xl p-6 text-center hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-gray-100"
-          >
-            <div className={`w-16 h-16 ${category.color} rounded-xl flex items-center justify-center mx-auto mb-4 transition-transform group-hover:scale-110`}>
-              <category.icon className="w-8 h-8 text-white" />
-            </div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-1">{category.name}</h3>
-            <p className="text-gray-600 text-sm">{category.count} projects</p>
-            <div className="mt-2 inline-flex items-center px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">
-              <TrendingUp className="w-3 h-3 mr-1" />
-              {category.growth}
-            </div>
-          </Link>
-        ))}
-      </div>
-    </div>
-
-    {/* Featured Projects */}
-    <div className="text-center mb-14">
-      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-        Featured Projects
-      </h2>
-      <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-        Hand-picked projects to inspire your next build
-      </p>
-    </div>
-
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {featuredProjects.map((project) => (
-        <Link
-          key={project.id}
-          to={`/project/${project.id}`}
-          className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-gray-100"
-        >
-          <div className="relative">
-            <img
-              src={project.thumbnail}
-              alt={project.title}
-              className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500"
-            />
-            <div className="absolute top-4 left-4">
-              <span className="px-3 py-1 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-full text-sm font-bold shadow">
-                {project.seller.level}
-              </span>
-            </div>
-            <div className="absolute top-4 right-4">
-              <button className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition">
-                <Play className="w-5 h-5 text-gray-700" />
-              </button>
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          </div>
-
-          <div className="p-6">
-            <div className="flex items-center justify-between mb-3">
-              <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold">
-                {project.category}
-              </span>
-              <div className="flex items-center">
-                <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                <span className="ml-1 text-sm font-semibold text-gray-700">{project.rating}</span>
-                <span className="ml-1 text-sm text-gray-500">({project.reviews})</span>
-              </div>
-            </div>
-
-            <h3 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-indigo-600 transition">
-              {project.title}
-            </h3>
-
-            <div className="flex items-center mb-4">
-              <img
-                src={project.seller.avatar}
-                alt={project.seller.name}
-                className="w-8 h-8 rounded-full object-cover mr-3"
-              />
-              <div>
-                <div className="font-semibold text-gray-900 text-sm">{project.seller.name}</div>
-                <div className="flex items-center text-xs text-gray-600">
-                  <Star className="w-3 h-3 text-yellow-400 fill-current mr-1" />
-                  {project.seller.rating}
-                </div>
-              </div>
-            </div>
-
-            <div className="flex flex-wrap gap-2 mb-4">
-              {project.tags.map((tag, index) => (
-                <span key={index} className="px-2 py-1 bg-gray-100 text-gray-700 rounded-lg text-xs font-medium">
-                  {tag}
-                </span>
-              ))}
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-2">
-                <span className="text-xl font-bold text-gray-900">{project.price}</span>
-                <span className="text-base text-gray-500 line-through">{project.originalPrice}</span>
-              </div>
-              <div className="text-right text-sm">
-                <div className="text-gray-600">{project.sales} sales</div>
-                <div className="text-green-600 font-medium">{project.deliveryTime} delivery</div>
-              </div>
-            </div>
-          </div>
-        </Link>
-      ))}
-    </div>
-  </div>
-</section>
-
-
-      {/* Features Section
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-teal-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Why Choose StudyStack?
+          {/* Title */}
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              Start Exploring & Building
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We provide everything you need for a successful academic project experience
+              Discover trending technologies and real-world projects to level up your skills
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <div key={index} className="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-teal-500 rounded-2xl mb-6">
-                  <feature.icon className="w-8 h-8 text-white" />
+          {/* Technologies Grid */}
+          <div className="mb-20">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+              {categories.map((category) => (
+                <Link
+                  key={category.name}
+                  to={`/projects?category=${category.name.toLowerCase()}`}
+                  className="group bg-white rounded-2xl p-6 text-center hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-gray-100"
+                >
+                  <div className={`w-16 h-16 ${category.color} rounded-xl flex items-center justify-center mx-auto mb-4 transition-transform group-hover:scale-110`}>
+                    <category.icon className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-1">{category.name}</h3>
+                  <p className="text-gray-600 text-sm">{category.count} projects</p>
+                  <div className="mt-2 inline-flex items-center px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">
+                    <TrendingUp className="w-3 h-3 mr-1" />
+                    {category.growth}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Featured Projects */}
+          <div className="text-center mb-14">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Featured Projects
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Hand-picked projects to inspire your next build
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {featuredProjects.map((project) => (
+              <Link
+                key={project.id}
+                to={`/project/${project.id}`}
+                className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-gray-100"
+              >
+                <div className="relative">
+                  <img
+                    src={project.thumbnail}
+                    alt={project.title}
+                    className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <span className="px-3 py-1 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-full text-sm font-bold shadow">
+                      {project.seller.level}
+                    </span>
+                  </div>
+                  <div className="absolute top-4 right-4">
+                    <button className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition">
+                      <Play className="w-5 h-5 text-gray-700" />
+                    </button>
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{feature.description}</p>
-              </div>
+
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold">
+                      {project.category}
+                    </span>
+                    <div className="flex items-center">
+                      <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                      <span className="ml-1 text-sm font-semibold text-gray-700">{project.rating}</span>
+                      <span className="ml-1 text-sm text-gray-500">({project.reviews})</span>
+                    </div>
+                  </div>
+
+                  <h3 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-indigo-600 transition">
+                    {project.title}
+                  </h3>
+
+                  <div className="flex items-center mb-4">
+                    <img
+                      src={project.seller.avatar}
+                      alt={project.seller.name}
+                      className="w-8 h-8 rounded-full object-cover mr-3"
+                    />
+                    <div>
+                      <div className="font-semibold text-gray-900 text-sm">{project.seller.name}</div>
+                      <div className="flex items-center text-xs text-gray-600">
+                        <Star className="w-3 h-3 text-yellow-400 fill-current mr-1" />
+                        {project.seller.rating}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.tags.map((tag, index) => (
+                      <span key={index} className="px-2 py-1 bg-gray-100 text-gray-700 rounded-lg text-xs font-medium">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <span className="text-xl font-bold text-gray-900">{project.price}</span>
+                      <span className="text-base text-gray-500 line-through">{project.originalPrice}</span>
+                    </div>
+                    <div className="text-right text-sm">
+                      <div className="text-gray-600">{project.sales} sales</div>
+                      <div className="text-green-600 font-medium">{project.deliveryTime} delivery</div>
+                    </div>
+                  </div>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
-      </section> */}
+      </section>
 
       {/* Testimonials */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl md:text-4xl font-semibold text-gray-900">
               What Students Say
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Join thousands of satisfied students who have accelerated their learning
+            <p className="text-lg text-gray-600 mt-2 max-w-2xl mx-auto">
+              Trusted by thousands of learners to showcase real, impactful project experience.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
-                <div className="flex items-center mb-6">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+              <div
+                key={index}
+                className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300"
+              >
+                {/* Stars */}
+                <div className="flex mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className={`w-4 h-4 mr-1 ${i < testimonial.rating
+                        ? "text-yellow-400 fill-yellow-400"
+                        : "text-gray-300"
+                        }`}
+                    />
                   ))}
                 </div>
-                <p className="text-gray-700 mb-6 italic leading-relaxed">"{testimonial.text}"</p>
+
+                {/* Testimonial */}
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  {testimonial.text}
+                </p>
+
+                {/* Student Info */}
                 <div className="flex items-center">
                   <img
                     src={testimonial.avatar}
                     alt={testimonial.name}
-                    className="w-12 h-12 rounded-full object-cover mr-4"
+                    className="w-12 h-12 rounded-full border border-gray-200 shadow-sm mr-4 object-cover"
                   />
                   <div>
-                    <h4 className="font-bold text-gray-900">{testimonial.name}</h4>
+                    <h4 className="font-medium text-gray-900">{testimonial.name}</h4>
                     <p className="text-sm text-gray-600">{testimonial.role}</p>
-                    <p className="text-sm text-blue-600 font-medium">{testimonial.university}</p>
+                    <p className="text-sm text-blue-600">{testimonial.university}</p>
                   </div>
                 </div>
-                <div className="mt-4 pt-4 border-t border-gray-200">
-                  <p className="text-sm text-gray-500">Project: <span className="font-medium text-gray-700">{testimonial.project}</span></p>
+
+                {/* Project Info */}
+                <div className="mt-4 pt-4 border-t border-gray-100">
+                  <p className="text-sm text-gray-500">
+                    Worked on:{" "}
+                    <span className="text-gray-700 font-medium">
+                      {testimonial.project}
+                    </span>
+                  </p>
                 </div>
               </div>
             ))}
           </div>
         </div>
       </section>
+
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-teal-700 text-white relative overflow-hidden">

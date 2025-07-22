@@ -23,6 +23,8 @@ const LoginForm: React.FC<LoginModalProps> = ({
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+
 
   if (!isOpen) return null;
 
